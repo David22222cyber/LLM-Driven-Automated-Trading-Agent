@@ -522,39 +522,87 @@ pip3 install -r requirements.txt
 
 ---
 
-## 8. Where to put your API keys
+7.5 How to Obtain API Keys
 
-Edit `llm_trading_agent/config.py` and replace the placeholders.
+Before running the project, you must obtain credentials for OpenAI and Alpaca Paper Trading. These services power the sentiment analysis and paper trading components of the system.
 
-Example:
+⚠️ Never commit your API keys to GitHub.
 
-```python
-@dataclass(frozen=True)
-class AlpacaConfig:
-    api_key: str = "YOUR_ALPACA_PAPER_KEY"
-    secret_key: str = "YOUR_ALPACA_PAPER_SECRET"
-    paper: bool = True
+OpenAI API Key (LLM Sentiment Option)
 
+OpenAI is used when the project runs in LLM sentiment mode.
 
-@dataclass(frozen=True)
-class OpenAIConfig:
-    api_key: str = "YOUR_OPENAI_API_KEY"
-    model: str = "gpt-4.1-mini"
-```
+The OpenAI model interprets the news headlines and produces structured sentiment outputs that the trading strategy can use.
 
-If you want to use OpenAI sentiment, also set:
+Steps to obtain the key
 
-```python
-@dataclass(frozen=True)
-class SentimentConfig:
-    mode: Literal["local", "openai"] = "openai"
-```
+Go to:
 
-If you want to stay fully local, leave:
+https://platform.openai.com
 
-```python
-mode = "local"
-```
+Create an account or sign in.
+
+Navigate to:
+
+Dashboard → API Keys
+
+Click:
+
+Create new secret key
+
+You will receive a key similar to:
+
+sk-xxxxxxxxxxxxxxxxxxxxxxxx
+
+This key allows the application to send requests to the OpenAI API.
+
+Alpaca Paper Trading API
+
+Alpaca provides a simulated trading environment that allows the system to place orders without using real money.
+
+The project uses Alpaca for:
+
+retrieving account information
+
+determining buying power
+
+submitting bracket orders
+
+managing stop-loss and take-profit rules
+
+Steps to obtain Alpaca keys
+
+Go to:
+
+https://alpaca.markets
+
+Create a free account.
+
+Log into the trading dashboard:
+
+https://app.alpaca.markets
+
+Navigate to:
+
+Paper Trading → API Keys
+
+Click:
+
+Generate New Key
+
+You will receive two values:
+
+API Key ID
+Secret Key
+
+Example format:
+
+API Key ID: PKXXXXXXXXXXXX
+Secret Key: xxxxxxxxxxxxxxxxxxxxx
+
+The paper trading endpoint used by this project is:
+
+https://paper-api.alpaca.markets
 
 ---
 
