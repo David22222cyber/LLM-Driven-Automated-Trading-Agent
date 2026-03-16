@@ -522,85 +522,109 @@ pip3 install -r requirements.txt
 
 ---
 
-## 7.5 How to Obtain API Keys
+## 7.5 Obtaining Required API Keys
 
-Before running the project, you must obtain credentials for OpenAI and Alpaca Paper Trading. These services power the sentiment analysis and paper trading components of the system.
+Before running the project, you must obtain credentials for **OpenAI** and **Alpaca Paper Trading**.  
+These services power the **sentiment analysis** and **paper trading execution** components of the system.
 
-⚠️ Never commit your API keys to GitHub.
+⚠️ **Important:** Never commit your API keys to GitHub.
 
-OpenAI API Key (LLM Sentiment Option)
+---
 
-OpenAI is used when the project runs in LLM sentiment mode.
+## OpenAI API Key (LLM Sentiment Mode)
 
-The OpenAI model interprets the news headlines and produces structured sentiment outputs that the trading strategy can use.
+OpenAI is used when the project runs in **LLM sentiment mode**.  
+The model analyzes financial news headlines and produces structured sentiment signals used by the trading strategy.
 
-Steps to obtain the key
+### Steps to obtain an OpenAI API key
 
-Go to:
+1. Visit the OpenAI platform:
+
 
 https://platform.openai.com
 
-Create an account or sign in.
 
-Navigate to:
+2. Create an account or sign in.
+
+3. Navigate to:
+
 
 Dashboard → API Keys
 
-Click:
+
+4. Click:
+
 
 Create new secret key
 
-You will receive a key similar to:
+
+5. Copy the generated key.
+
+Example format:
+
 
 sk-xxxxxxxxxxxxxxxxxxxxxxxx
 
+
 This key allows the application to send requests to the OpenAI API.
 
-Alpaca Paper Trading API
+---
 
-Alpaca provides a simulated trading environment that allows the system to place orders without using real money.
+## Alpaca Paper Trading API
+
+Alpaca provides a **simulated trading environment** where the system can place orders without using real money.
 
 The project uses Alpaca for:
 
-retrieving account information
+- retrieving account information
+- determining buying power
+- submitting bracket orders
+- managing stop-loss and take-profit rules
 
-determining buying power
+### Steps to obtain Alpaca API keys
 
-submitting bracket orders
+1. Visit:
 
-managing stop-loss and take-profit rules
-
-Steps to obtain Alpaca keys
-
-Go to:
 
 https://alpaca.markets
 
-Create a free account.
 
-Log into the trading dashboard:
+2. Create a free account.
+
+3. Log into the trading dashboard:
+
 
 https://app.alpaca.markets
 
-Navigate to:
+
+4. Navigate to:
+
 
 Paper Trading → API Keys
 
-Click:
+
+5. Click:
+
 
 Generate New Key
 
-You will receive two values:
+
+You will receive two credentials:
+
 
 API Key ID
 Secret Key
 
+
 Example format:
+
 
 API Key ID: PKXXXXXXXXXXXX
 Secret Key: xxxxxxxxxxxxxxxxxxxxx
 
+
 The paper trading endpoint used by this project is:
+
 
 https://paper-api.alpaca.markets
 
@@ -644,7 +668,7 @@ mode = "local"
 
 ## 9. How to run the project
 
-# Optional: Quick Launcher Scripts
+### Optional: Quick Launcher Scripts
 
 For convenience, the repository includes two launcher scripts that provide a simple interactive menu for running the main workflows (file end with .bat or .sh).
 
