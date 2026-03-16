@@ -606,6 +606,42 @@ https://paper-api.alpaca.markets
 
 ---
 
+## 8. Where to put your API keys
+
+Edit `llm_trading_agent/config.py` and replace the placeholders.
+
+Example:
+
+```python
+@dataclass(frozen=True)
+class AlpacaConfig:
+    api_key: str = "YOUR_ALPACA_PAPER_KEY"
+    secret_key: str = "YOUR_ALPACA_PAPER_SECRET"
+    paper: bool = True
+
+
+@dataclass(frozen=True)
+class OpenAIConfig:
+    api_key: str = "YOUR_OPENAI_API_KEY"
+    model: str = "gpt-4.1-mini"
+```
+
+If you want to use OpenAI sentiment, also set:
+
+```python
+@dataclass(frozen=True)
+class SentimentConfig:
+    mode: Literal["local", "openai"] = "openai"
+```
+
+If you want to stay fully local, leave:
+
+```python
+mode = "local"
+```
+
+---
+
 ## 9. How to run the project
 
 Always run commands from the project root directory.
