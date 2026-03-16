@@ -522,7 +522,7 @@ pip3 install -r requirements.txt
 
 ---
 
-7.5 How to Obtain API Keys
+## 7.5 How to Obtain API Keys
 
 Before running the project, you must obtain credentials for OpenAI and Alpaca Paper Trading. These services power the sentiment analysis and paper trading components of the system.
 
