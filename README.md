@@ -644,6 +644,12 @@ mode = "local"
 
 ## 9. How to run the project
 
+# Optional: Quick Launcher Scripts
+
+For convenience, the repository includes two launcher scripts that provide a simple interactive menu for running the main workflows (file end with .bat or .sh).
+
+These scripts are optional. The project can always be run directly using Python commands.
+
 Always run commands from the project root directory.
 
 ### A. Generate a live signal
