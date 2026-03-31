@@ -42,7 +42,10 @@ class SimpleBacktester:
                 tp_hit = close >= entry_price * (1.0 + self.config.take_profit_pct)
                 timeout = holding_days >= self.config.max_holding_days
                 trend_break = not price_above_sma
+
+                # Looser exit rule: only exit on clearly negative sentiment
                 negative_news = signal < 0
+
                 if stop_hit or tp_hit or timeout or trend_break or negative_news:
                     cash += shares * close
                     trade_rows.append(
@@ -58,7 +61,9 @@ class SimpleBacktester:
                     entry_price = None
                     entry_date = None
 
-            if shares == 0 and price_above_sma and signal > 0:
+            # Looser entry rule:
+            # Enter whenever trend is positive, even if sentiment is neutral.
+            if shares == 0 and price_above_sma:
                 budget = cash * self.config.position_size_fraction
                 buy_qty = int(budget // close)
                 if buy_qty > 0:
@@ -72,12 +77,20 @@ class SimpleBacktester:
                             "action": "BUY",
                             "price": close,
                             "shares": buy_qty,
-                            "reason": "trend_plus_sentiment",
+                            "reason": "trend_only_entry",
                         }
                     )
 
             equity = cash + shares * close
-            equity_rows.append({"date": dt, "equity": equity, "cash": cash, "shares": shares, "close": close})
+            equity_rows.append(
+                {
+                    "date": dt,
+                    "equity": equity,
+                    "cash": cash,
+                    "shares": shares,
+                    "close": close,
+                }
+            )
 
         equity_df = pd.DataFrame(equity_rows).set_index("date")
         trades_df = pd.DataFrame(trade_rows)
